@@ -40,6 +40,16 @@ namespace BackEnd
             services.AddScoped<INotificador, Notificador>();
             services.AddScoped<IUsuarioService, UsuarioService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Development",
+                    builder =>
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             services.AddControllers();
         }
 

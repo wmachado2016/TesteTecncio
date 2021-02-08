@@ -1,0 +1,66 @@
+<!-- <!-- <div layout="column" layout-fill> -->
+<div align="center" layout="row" layout-align="center center">
+
+  <mat-card class="info-card mat-elevation-z8" flex="100" style="margin-top:60px;width: 900px;">
+
+    <mat-card-title>Cadastro</mat-card-title>
+    <mat-card-subtitle>Cadastro de Usuários </mat-card-subtitle>
+
+    <mat-card-content fxLayout="column" fxLayoutAlign="stretch">
+
+      <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="end stretch">
+
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between end">
+          <mat-form-field fxFlex="50">
+            <input matInput type="text" formControlName="nome" placeholder="Nome">
+            <mat-error *ngIf="">
+
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="40">
+            <input matInput type="text" formControlName="sobrenome" placeholder="SobreNome">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between end">
+          <mat-form-field fxFlex="100">
+            <input matInput formControlName="email" placeholder="Enter your email" type="email">
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between end">
+          <mat-form-field fxFlex="50">
+            <input matInput [matDatepicker]="picker" formControlName="datanascimento">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex="50">
+            <mat-select placeholder="Escolaridade" formControlName="escolaridade">
+              <mat-option *ngFor="let s of [ 'Infantil', 'Fundamental', 'Medio', 'Superior']" [value]="s">
+                {{s}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between end">
+          <section class="example-section">
+            <mat-checkbox class="example-margin" formControlName="ativo">Ativo</mat-checkbox>
+          </section>
+        </div>
+        <button mat-button color="primary" type="submit" [disabled]="!usuarioForm.valid">
+          <mat-icon>done</mat-icon>Submit
+        </button>
+        <button mat-button color="primary" type="submit" [disabled]="!usuarioForm.valid" (click)="onEdit()">
+          <mat-icon>edit</mat-icon>Editar
+        </button>
+        <button mat-button color="primary" type="submit" [disabled]="!usuarioForm.valid" (click)="onDelete()">
+          <mat-icon>delete</mat-icon>Excluir
+        </button>
+
+      </form>
+
+    </mat-card-content>
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
+</div>
